@@ -7,23 +7,18 @@ import java.util.List;
 
 public class LottoMachine {
 
-    private final int money;
     private final List<Lotto> lottos;
 
-    public LottoMachine(int money) {
-        this.money = money;
-        this.lottos = generateLottos(money);
+    public LottoMachine(Money money) {
+        int count = money.calculateLottoCount();
+        this.lottos = generateLottos(count);
     }
 
-    private List<Lotto> generateLottos(int money) {
-        int count = money / Lotto.LOTTO_PRICE;
-
+    private List<Lotto> generateLottos(int count) {
         List<Lotto> generatedLottos = new ArrayList<>();
-
         for (int i = 0; i < count; i++) {
             generatedLottos.add(new Lotto(generateLottoNumbers()));
         }
-
         return generatedLottos;
     }
 
