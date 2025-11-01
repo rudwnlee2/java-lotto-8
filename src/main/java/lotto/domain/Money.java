@@ -23,4 +23,8 @@ public class Money {
         return value / Lotto.LOTTO_PRICE;
     }
 
+    public int getValue() {
+        return value;
+    }
+
 }
