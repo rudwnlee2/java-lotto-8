@@ -7,14 +7,7 @@ import java.util.List;
 
 public class LottoMachine {
 
-    private final List<Lotto> lottos;
-
-    public LottoMachine(Money money) {
-        int count = money.calculateLottoCount();
-        this.lottos = generateLottos(count);
-    }
-
-    private List<Lotto> generateLottos(int count) {
+    public List<Lotto> generateLottos(int count) {
         List<Lotto> generatedLottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             generatedLottos.add(new Lotto(generateLottoNumbers()));
