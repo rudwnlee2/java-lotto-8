@@ -26,6 +26,7 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
 
+        duplicateNumberValidate(numbers);
         numberRangeValidate(numbers);
     }
 
@@ -42,6 +43,12 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private void duplicateNumberValidate(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복이 없어야 합니다");
+        }
     }
 
 }
