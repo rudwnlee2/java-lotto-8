@@ -17,13 +17,26 @@ public class LottoPurchaseController {
     }
 
     public void purchaseLottos() {
-        int amount = InputView.inputPurchaseAmount();
-        Money money = new Money(amount);
-
-        List<Lotto> purchasedLottos = lottoPurchaseService.purchaseLottos(money);
+        List<Lotto> purchasedLottos = attemptPurchase();
 
         OutputView.printPurchaseCount(purchasedLottos.size());
         OutputView.printLottos(purchasedLottos);
+    }
+
+    private List<Lotto> attemptPurchase() {
+        while (true) {
+            try {
+                int amount = InputView.inputPurchaseAmount();
+
+                Money money = new Money(amount);
+
+                List<Lotto> purchasedLottos = lottoPurchaseService.purchaseLottos(money);
+                return purchasedLottos;
+
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
     }
 
 
