@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.Lotto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -66,4 +66,57 @@ class LottoTest {
         List<Integer> expectedSortedNumbers = List.of(1, 2, 3, 4, 5, 6);
         assertThat(lotto.getNumbers()).isEqualTo(expectedSortedNumbers);
     }
+
+    private WinningLotto winningLotto;
+
+    @BeforeEach
+    void setUp() {
+        winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
+    }
+
+    @DisplayName("calculateRank가 1등(FIRST)을 반환한다.")
+    @Test
+    void 랭크_계산_일등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        assertThat(lotto.calculateRank(winningLotto)).isEqualTo(LottoRank.FIRST);
+    }
+
+    @DisplayName("calculateRank가 2등(SECOND)을 반환한다.")
+    @Test
+    void 랭크_계산_이등() {
+        // 5개 일치 + 보너스 일치
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        assertThat(lotto.calculateRank(winningLotto)).isEqualTo(LottoRank.SECOND);
+    }
+
+    @DisplayName("calculateRank가 3등(THIRD)을 반환한다.")
+    @Test
+    void 랭크_계산_삼등() {
+        // 5개 일치 + 보너스 불일치
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        assertThat(lotto.calculateRank(winningLotto)).isEqualTo(LottoRank.THIRD);
+    }
+
+    @DisplayName("calculateRank가 4등(FOURTH)을 반환한다.")
+    @Test
+    void 랭크_계산_사등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 8, 9));
+        assertThat(lotto.calculateRank(winningLotto)).isEqualTo(LottoRank.FOURTH);
+    }
+
+    @DisplayName("calculateRank가 5등(FIFTH)을 반환한다.")
+    @Test
+    void 랭크_계산_오등() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
+        assertThat(lotto.calculateRank(winningLotto)).isEqualTo(LottoRank.FIFTH);
+    }
+
+    @DisplayName("calculateRank가 꽝(NONE)을 반환한다.")
+    @Test
+    void 랭크_계산_꽝() {
+        // 2개 일치
+        Lotto lotto = new Lotto(List.of(1, 2, 10, 11, 12, 13));
+        assertThat(lotto.calculateRank(winningLotto)).isEqualTo(LottoRank.NONE);
+    }
+
 }
