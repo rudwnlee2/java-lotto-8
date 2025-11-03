@@ -4,7 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import service.LottoPurchaseService;
+import lotto.service.LottoPurchaseService;
 
 import java.util.List;
 

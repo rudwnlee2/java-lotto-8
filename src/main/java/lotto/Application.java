@@ -7,8 +7,8 @@ import lotto.domain.LottoMachine;
 import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import service.LottoPurchaseService;
-import service.LottoResultService;
+import lotto.service.LottoPurchaseService;
+import lotto.service.LottoResultService;
 
 import java.util.List;
 

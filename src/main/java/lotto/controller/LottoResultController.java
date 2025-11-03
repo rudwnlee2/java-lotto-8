@@ -6,13 +6,11 @@ import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import service.LottoResultService;
+import lotto.service.LottoResultService;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LottoResultController {
 
