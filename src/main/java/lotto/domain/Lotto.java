@@ -51,4 +51,15 @@ public class Lotto {
         }
     }
 
+    public LottoRank calculateRank(WinningLotto winningLotto) {
+
+        int matchCount = (int) this.numbers.stream()
+                .filter(winningLotto.getWinningLotto().getNumbers()::contains)
+                .count();
+
+        boolean matchBonus = this.numbers.contains(winningLotto.getBonusNumber());
+
+        return LottoRank.valueOf(matchCount, matchBonus);
+    }
+
 }
