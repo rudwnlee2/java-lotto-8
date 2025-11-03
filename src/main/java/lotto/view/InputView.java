@@ -14,5 +14,16 @@ public class InputView {
         return money;
     }
 
+    public static String inputWinningNumbers() {
+        System.out.println();
+        System.out.println(PROMPT_WINNING_NUMBERS);
+        return Console.readLine();
+    }
+
+    public static String inputBonusNumber() {
+        System.out.println();
+        System.out.println(PROMPT_BONUS_NUMBER);
+        return Console.readLine();
+    }
 
 }
