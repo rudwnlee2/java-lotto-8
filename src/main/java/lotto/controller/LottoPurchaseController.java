@@ -16,12 +16,18 @@ public class LottoPurchaseController {
         this.lottoPurchaseService = lottoPurchaseService;
     }
 
-    public void purchaseLottos() {
-        List<Lotto> purchasedLottos = attemptPurchase();
 
-        OutputView.printPurchaseCount(purchasedLottos.size());
-        OutputView.printLottos(purchasedLottos);
+    public List<Lotto> purchaseLottos(Money money) {
+        // 서비스에게 구매를 요청하고 결과를 바로 반환합니다.
+        return lottoPurchaseService.purchaseLottos(money);
     }
+
+//    public void purchaseLottos() {
+//        List<Lotto> purchasedLottos = attemptPurchase();
+//
+//        OutputView.printPurchaseCount(purchasedLottos.size());
+//        OutputView.printLottos(purchasedLottos);
+//    }
 
     private List<Lotto> attemptPurchase() {
         while (true) {
