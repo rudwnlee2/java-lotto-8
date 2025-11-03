@@ -10,8 +10,12 @@ public class InputView {
 
     public static int inputPurchaseAmount() {
         System.out.println(PROMPT_PURCHASE_AMOUNT);
-        int money = Integer.parseInt(Console.readLine());
-        return money;
+        try {
+            String input = Console.readLine();
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자여야 합니다.");
+        }
     }
 
     public static String inputWinningNumbers() {
